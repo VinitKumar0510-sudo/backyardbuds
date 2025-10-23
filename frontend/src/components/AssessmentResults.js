@@ -21,15 +21,15 @@ const AssessmentResults = ({ assessment, onNewAssessment }) => {
 
   const getResultMessage = (result) => {
     if (result.includes('APPROVED')) {
-      return 'Your structure appears to qualify as exempt development.';
+      return '🎉 Great news! Your structure qualifies as exempt development - no DA required!';
     }
     if (result.includes('REJECTED')) {
-      return 'Your structure does not qualify as exempt development.';
+      return '📋 Your structure requires a Development Application, but we can help you understand why.';
     }
     if (result.includes('CONDITIONAL')) {
-      return 'Your structure may qualify with conditions.';
+      return '✨ Your structure can qualify with some adjustments - see conditions below.';
     }
-    return 'Assessment completed.';
+    return 'Assessment completed - see details below.';
   };
 
   const renderLegislationDetail = (legislation) => {
@@ -98,7 +98,10 @@ const AssessmentResults = ({ assessment, onNewAssessment }) => {
       <div className="text-center mb-6">
         <div className="text-4xl mb-2">{getResultIcon(assessment.result)}</div>
         <h2 className={`text-2xl font-bold mb-2 ${getResultColor(assessment.result)}`}>
-          RESULT: {assessment.result}
+          {assessment.result.includes('APPROVED') ? '✅ APPROVED' : 
+           assessment.result.includes('REJECTED') ? '📋 REQUIRES DA' : 
+           assessment.result.includes('CONDITIONAL') ? '⚠️ CONDITIONAL APPROVAL' : 
+           assessment.result}
         </h2>
         <p className="text-gray-600">
           {getResultMessage(assessment.result)}
@@ -130,13 +133,16 @@ const AssessmentResults = ({ assessment, onNewAssessment }) => {
       )}
 
       {assessment.issues && assessment.issues.length > 0 && (
-        <div className="bg-red-50 border border-red-200 p-4 rounded-lg mb-4">
-          <h4 className="font-medium text-red-800 mb-2">Critical Issues:</h4>
-          <ul className="text-sm text-red-700 space-y-1">
+        <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg mb-4">
+          <h4 className="font-medium text-blue-800 mb-2">📋 Requirements for DA Approval:</h4>
+          <ul className="text-sm text-blue-700 space-y-1">
             {assessment.issues.map((issue, index) => (
               <li key={index}>• {issue}</li>
             ))}
           </ul>
+          <div className="mt-3 p-3 bg-blue-100 rounded">
+            <p className="text-sm text-blue-800 font-medium">💡 Good news: A Development Application can still be approved for your structure!</p>
+          </div>
         </div>
       )}
 
@@ -172,15 +178,18 @@ const AssessmentResults = ({ assessment, onNewAssessment }) => {
         </div>
       )}
 
-      <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg mb-6">
-        <h4 className="font-medium text-yellow-800 mb-2">⚠️ IMPORTANT DISCLAIMERS:</h4>
-        <ul className="text-sm text-yellow-700 space-y-1">
-          <li>• This is NOT a formal approval or building permit</li>
-          <li>• You must verify Schedule 4 status with council</li>
-          <li>• You must verify property is NOT in foreshore area</li>
-          <li>• All measurements must be verified on-site</li>
-          <li>• Contact council if uncertain about any requirement</li>
+      <div className="bg-green-50 border border-green-200 p-4 rounded-lg mb-6">
+        <h4 className="font-medium text-green-800 mb-2">📋 Next Steps:</h4>
+        <ul className="text-sm text-green-700 space-y-1">
+          <li>• 📞 Contact Albury City Council to confirm this assessment</li>
+          <li>• 📏 Have a licensed surveyor verify all measurements</li>
+          <li>• 🏛️ Check if your property has any heritage or environmental overlays</li>
+          <li>• 🔍 Ensure compliance with building codes during construction</li>
+          <li>• 💼 Consider consulting with a building professional</li>
         </ul>
+        <div className="mt-3 p-3 bg-green-100 rounded">
+          <p className="text-sm text-green-800">💡 <strong>Remember:</strong> This tool provides guidance only. Always verify with council before starting construction.</p>
+        </div>
       </div>
 
       <div className="flex space-x-4">

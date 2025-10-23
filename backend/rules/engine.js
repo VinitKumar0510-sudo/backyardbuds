@@ -25,10 +25,10 @@ class RulesEngine {
     if (!rules) {
       return {
         recommendation: 'not_exempt',
-        reasoning: `No rules found for structure type: ${proposal.structureType}`,
+        reasoning: `We don't have rules for '${proposal.structureType}' yet, but it may still be possible with a Development Application`,
         clauses: [],
         conditions: [],
-        failedConditions: [`Unsupported structure type: ${proposal.structureType}`]
+        failedConditions: [`Structure type '${proposal.structureType}' requires individual assessment - contact council for guidance`]
       };
     }
 
@@ -64,9 +64,10 @@ class RulesEngine {
 
     // Set reasoning based on result
     if (results.recommendation === 'exempt') {
-      results.reasoning = 'Proposal meets all SEPP Part 2 criteria for exempt development';
+      results.reasoning = '🎉 Great news! Your proposal meets all SEPP Part 2 criteria for exempt development';
     } else {
-      results.reasoning = 'Proposal does not meet SEPP Part 2 criteria for exempt development';
+      const issueCount = results.failedConditions.length;
+      results.reasoning = `Your proposal needs ${issueCount} adjustment${issueCount > 1 ? 's' : ''} to qualify as exempt development. See the requirements below - many can be easily addressed!`;
     }
 
     return results;
@@ -261,7 +262,7 @@ class RulesEngine {
     if (!result) {
       if (condition.includes('height')) {
         const limit = context.structureType === 'deck' ? '1.0m' : '3.0m';
-        return `Height ${context.height}m > ${limit}`;
+        return `Height needs to be reduced from ${context.height}m to ${limit} or less for exempt development`;
       }
       if (condition.includes('floorArea')) {
         let limit = '20m²';
@@ -272,18 +273,19 @@ class RulesEngine {
         } else if (context.structureType === 'carport') {
           limit = '40m²';
         }
-        return `Floor area ${context.floorArea}m² > ${limit}`;
+        return `Floor area needs to be reduced from ${context.floorArea}m² to ${limit} or less for exempt development`;
       }
       if (condition.includes('distanceFromBoundary')) {
-        return 'Insufficient boundary setback';
+        const minDistance = ['RU1','RU2','RU3','RU4','RU6','R5'].includes(context.zoning) ? '5m' : '0.9m';
+        return `Structure needs to be moved at least ${minDistance} from the boundary (currently ${context.distanceFromBoundary}m)`;
       }
       if (condition === '!heritageOverlay') {
-        return 'Heritage overlay restricts development';
+        return 'Heritage overlay requires Development Application - consider heritage-sensitive design';
       }
       if (condition === '!hasEnvironmentalOverlay') {
-        return 'Environmental overlay restricts development';
+        return 'Environmental overlay requires Development Application - consider environmental impact assessment';
       }
-      return 'Requirement not met';
+      return 'This requirement needs to be addressed for exempt development';
     }
     
     // For passed conditions, return generic message
