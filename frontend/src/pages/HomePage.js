@@ -7,33 +7,29 @@ const HomePage = () => {
 
 
   const structureRules = {
-    Shed: {
-      height: '≤ 4.0 metres',
-      area: '≤ 50 m²',
-      setback: '≥ 1.5m from boundaries',
-      lotSize: '≥ 450 m² minimum',
-      clause: 'SEPP Part 2, Clause 2.12'
+    'Garden Structures': {
+      height: '≤ 3.0m',
+      area: '≤ 20m² (50m² rural)',
+      setback: '≥ 900mm (5m rural)',
+      clause: 'SEPP Part 2, Clause 2.17-2.18',
+      description: 'Sheds, gazebos, greenhouses',
+      additional: 'Max 2 per lot, Class 10 building, no shipping containers'
     },
-    Patio: {
-      height: '≤ 3.0 metres',
-      area: '≤ 40 m²',
-      setback: '≥ 1.0m from boundaries',
-      lotSize: '≥ 300 m² minimum',
-      clause: 'SEPP Part 2, Clause 2.13'
+    'Carports': {
+      height: '≤ 3.0m (gutter line if attached)',
+      area: '≤ 20-50m² (depends on lot)',
+      setback: '≥ 900mm + 1m from road',
+      clause: 'SEPP Part 2, Clause 2.19-2.20',
+      description: 'Covered parking',
+      additional: 'Max 1 per lot, roof 500mm from boundary, road consent if new driveway'
     },
-    Pergola: {
-      height: '≤ 3.5 metres',
-      area: '≤ 35 m²',
-      setback: '≥ 1.0m from boundaries',
-      lotSize: '≥ 300 m² minimum',
-      clause: 'SEPP Part 2, Clause 2.14'
-    },
-    Carport: {
-      height: '≤ 4.0 metres',
-      area: '≤ 60 m²',
-      setback: '≥ 1.5m from boundaries',
-      lotSize: '≥ 450 m² minimum',
-      clause: 'SEPP Part 2, Clause 2.15'
+    'Outdoor Areas': {
+      height: '≤ 3.0m (1.4m walls)',
+      area: '≤ 25m² total',
+      setback: '≥ 900mm (5m rural)',
+      clause: 'SEPP Part 2, Clause 2.11-2.12',
+      description: 'Patios, decks, pergolas',
+      additional: 'Floor max 1m high, roof overhang 600mm, behind building line'
     }
   };
   return (
@@ -46,11 +42,11 @@ const HomePage = () => {
           <div className="mb-8">
             <img 
               src="/backyard-buds-logo.svg" 
-              alt="Backyard Buds Logo" 
+              alt="BackyardBud Logo" 
               className="w-20 h-20 mx-auto mb-6 filter brightness-0 invert"
             />
             <h1 className="text-5xl font-bold mb-4">
-              Backyard Buds
+              BackyardBud
             </h1>
             <p className="text-xl mb-8 max-w-3xl mx-auto opacity-90">
               Your friendly guide to determining whether your shed or patio proposal qualifies as Exempt Development 
@@ -144,16 +140,20 @@ const HomePage = () => {
         {/* Supported Structures */}
         <div className="text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Supported Structure Types</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {['Shed', 'Patio', 'Pergola', 'Carport'].map((structure, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {Object.keys(structureRules).map((structure, index) => (
               <button 
                 key={structure} 
                 onClick={() => setSelectedStructure(structure)}
                 className="stagger-item bg-white bg-opacity-80 backdrop-blur-sm p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl transform hover:scale-105 border border-white border-opacity-20 cursor-pointer hover:bg-green-50 hover-lift animate-bounce-in"
                 style={{animationDelay: `${index * 0.1}s`}}
               >
-                <h3 className="font-bold text-gray-900 text-lg">{structure}</h3>
-                <p className="text-sm text-gray-500 mt-2">Click for rules</p>
+                <h3 className="font-bold text-gray-900 text-sm">
+                  {structure}
+                </h3>
+                <p className="text-xs text-gray-500 mt-1">
+                  {structureRules[structure].description}
+                </p>
               </button>
             ))}
           </div>
@@ -173,6 +173,11 @@ const HomePage = () => {
                 </div>
                 
                 <div className="space-y-4">
+                  <div className="bg-indigo-50 p-4 rounded-lg">
+                    <h4 className="font-semibold text-indigo-800 mb-2">Includes</h4>
+                    <p className="text-indigo-700">{structureRules[selectedStructure].description}</p>
+                  </div>
+                  
                   <div className="bg-green-50 p-4 rounded-lg">
                     <h4 className="font-semibold text-green-800 mb-2">Height Limit</h4>
                     <p className="text-green-700">{structureRules[selectedStructure].height}</p>
@@ -189,8 +194,8 @@ const HomePage = () => {
                   </div>
                   
                   <div className="bg-purple-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-purple-800 mb-2">Lot Size</h4>
-                    <p className="text-purple-700">{structureRules[selectedStructure].lotSize}</p>
+                    <h4 className="font-semibold text-purple-800 mb-2">Additional Requirements</h4>
+                    <p className="text-purple-700 text-sm">{structureRules[selectedStructure].additional}</p>
                   </div>
                   
                   <div className="bg-gray-50 p-4 rounded-lg">

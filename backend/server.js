@@ -54,7 +54,7 @@ app.use('*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🏡 Backyard Buds API running on port ${PORT}`);
+  console.log(`🏡 BackyardBud API running on port ${PORT}`);
   console.log(`📋 Health check: http://localhost:${PORT}/api/health`);
 });
 

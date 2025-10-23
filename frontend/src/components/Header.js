@@ -17,13 +17,13 @@ const Header = () => {
               <div className="mr-4 transform transition-transform duration-300 group-hover:scale-110">
                 <img 
                   src="/backyard-buds-logo.svg" 
-                  alt="Backyard Buds Logo" 
+                  alt="BackyardBud Logo" 
                   className="w-10 h-10"
                 />
               </div>
               <div>
                 <h1 className="text-xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-                  Backyard Buds
+                  BackyardBud
                 </h1>
                 <p className="text-sm text-gray-600">Albury Planning Assessment</p>
               </div>

@@ -4,20 +4,20 @@ const AboutPage = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-6">About Backyard Buds</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-6">About BackyardBud</h1>
         
         <div className="prose max-w-none">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4">Overview</h2>
           <p className="text-gray-700 mb-6">
-            Backyard Buds is your friendly web-based companion designed to help residents, 
+            BackyardBud is your friendly web-based companion designed to help residents, 
             builders, and property purchasers in Albury determine whether their shed or patio proposal 
             qualifies as Exempt Development under the NSW State Environmental Planning Policy 
             (Exempt & Complying Development Codes) 2008.
           </p>
 
-          <h2 className="text-2xl font-semibold text-gray-900 mb-4">How Backyard Buds Works</h2>
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4">How BackyardBud Works</h2>
           <p className="text-gray-700 mb-4">
-            Backyard Buds uses a friendly, rules-based approach that applies the specific criteria outlined 
+            BackyardBud uses a friendly, rules-based approach that applies the specific criteria outlined 
             in SEPP Part 2 for exempt development. When you submit your backyard project details, we:
           </p>
           <ul className="list-disc list-inside text-gray-700 mb-6 space-y-2">
@@ -28,44 +28,37 @@ const AboutPage = () => {
           </ul>
 
           <h2 className="text-2xl font-semibold text-gray-900 mb-4">Supported Structure Types</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             <div className="border border-gray-200 rounded-lg p-4">
-              <h3 className="font-semibold text-gray-900 mb-2">Sheds</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Maximum height: 4.0m</li>
-                <li>• Maximum floor area: 50m²</li>
-                <li>• Minimum setback: 1.5m</li>
-                <li>• Minimum lot size: 450m²</li>
-              </ul>
-            </div>
-            
-            <div className="border border-gray-200 rounded-lg p-4">
-              <h3 className="font-semibold text-gray-900 mb-2">Patios</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">Garden Structures</h3>
+              <p className="text-xs text-gray-500 mb-2">Sheds, gazebos, greenhouses</p>
               <ul className="text-sm text-gray-600 space-y-1">
                 <li>• Maximum height: 3.0m</li>
-                <li>• Maximum floor area: 40m²</li>
-                <li>• Minimum setback: 1.0m</li>
-                <li>• Minimum lot size: 300m²</li>
-              </ul>
-            </div>
-            
-            <div className="border border-gray-200 rounded-lg p-4">
-              <h3 className="font-semibold text-gray-900 mb-2">Pergolas</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Maximum height: 3.5m</li>
-                <li>• Maximum floor area: 35m²</li>
-                <li>• Minimum setback: 1.0m</li>
-                <li>• Minimum lot size: 300m²</li>
+                <li>• Maximum area: 20m² (50m² rural)</li>
+                <li>• Minimum setback: 900mm (5m rural)</li>
+                <li>• Max 2 per lot</li>
               </ul>
             </div>
             
             <div className="border border-gray-200 rounded-lg p-4">
               <h3 className="font-semibold text-gray-900 mb-2">Carports</h3>
+              <p className="text-xs text-gray-500 mb-2">Covered parking</p>
               <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Maximum height: 4.0m</li>
-                <li>• Maximum floor area: 60m²</li>
-                <li>• Minimum setback: 1.5m</li>
-                <li>• Minimum lot size: 450m²</li>
+                <li>• Maximum height: 3.0m</li>
+                <li>• Maximum area: 20-50m²</li>
+                <li>• Minimum setback: 900mm + 1m from road</li>
+                <li>• Max 1 per lot</li>
+              </ul>
+            </div>
+            
+            <div className="border border-gray-200 rounded-lg p-4">
+              <h3 className="font-semibold text-gray-900 mb-2">Outdoor Areas</h3>
+              <p className="text-xs text-gray-500 mb-2">Patios, decks, pergolas</p>
+              <ul className="text-sm text-gray-600 space-y-1">
+                <li>• Maximum height: 3.0m</li>
+                <li>• Maximum area: 25m² total</li>
+                <li>• Minimum setback: 900mm (5m rural)</li>
+                <li>• Wall height max 1.4m</li>
               </ul>
             </div>
           </div>
@@ -142,7 +135,7 @@ const AboutPage = () => {
 
           <h2 className="text-2xl font-semibold text-gray-900 mb-4 mt-8">Contact & Support</h2>
           <p className="text-gray-700">
-            Backyard Buds is your friendly companion for educational purposes. For official planning 
+            BackyardBud is your friendly companion for educational purposes. For official planning 
             advice and development applications, please contact Albury City Council directly 
             or consult with a qualified town planner.
           </p>

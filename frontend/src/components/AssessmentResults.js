@@ -27,7 +27,7 @@ const AssessmentResults = ({ assessment, onNewAssessment }) => {
       return '📋 Your structure requires a Development Application, but we can help you understand why.';
     }
     if (result.includes('CONDITIONAL')) {
-      return '✨ Your structure can qualify with some adjustments - see conditions below.';
+      return '✨ Your structure will likely qualify as exempt with some adjustments - see conditions below.';
     }
     return 'Assessment completed - see details below.';
   };
@@ -98,9 +98,9 @@ const AssessmentResults = ({ assessment, onNewAssessment }) => {
       <div className="text-center mb-6">
         <div className="text-4xl mb-2">{getResultIcon(assessment.result)}</div>
         <h2 className={`text-2xl font-bold mb-2 ${getResultColor(assessment.result)}`}>
-          {assessment.result.includes('APPROVED') ? '✅ APPROVED' : 
-           assessment.result.includes('REJECTED') ? '📋 REQUIRES DA' : 
-           assessment.result.includes('CONDITIONAL') ? '⚠️ CONDITIONAL APPROVAL' : 
+          {assessment.result.includes('APPROVED') ? 'APPROVED' : 
+           assessment.result.includes('REJECTED') ? 'Non Exempt' : 
+           assessment.result.includes('CONDITIONAL') ? '⚠️ Likely Exempt' : 
            assessment.result}
         </h2>
         <p className="text-gray-600">
@@ -177,6 +177,17 @@ const AssessmentResults = ({ assessment, onNewAssessment }) => {
           </div>
         </div>
       )}
+
+      <div className="bg-red-50 border border-red-200 p-4 rounded-lg mb-6">
+        <h4 className="font-medium text-red-800 mb-2">⚠️ IMPORTANT DISCLAIMERS:</h4>
+        <ul className="text-sm text-red-700 space-y-1">
+          <li>• This is NOT a formal approval or Development Consent</li>
+          <li>• You must verify the property is NOT in a foreshore area</li>
+          <li>• Building Code of Australia compliance is required</li>
+          <li>• This assessment is based on information provided and may not account for all site-specific conditions</li>
+          <li>• Always consult with your local council before commencing work</li>
+        </ul>
+      </div>
 
       <div className="bg-green-50 border border-green-200 p-4 rounded-lg mb-6">
         <h4 className="font-medium text-green-800 mb-2">📋 Next Steps:</h4>
