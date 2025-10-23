@@ -1,0 +1,50 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient definitions -->
+    <linearGradient id="houseGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1D4ED8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="roofGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="doorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D97706;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle with gradient -->
+  <circle cx="20" cy="20" r="18" fill="url(#houseGradient)" opacity="0.1"/>
+  
+  <!-- House base -->
+  <rect x="10" y="18" width="20" height="16" rx="2" fill="url(#houseGradient)"/>
+  
+  <!-- Roof -->
+  <path d="M8 20 L20 8 L32 20 L28 20 L20 12 L12 20 Z" fill="url(#roofGradient)"/>
+  
+  <!-- Door -->
+  <rect x="17" y="24" width="6" height="10" rx="1" fill="url(#doorGradient)"/>
+  
+  <!-- Door handle -->
+  <circle cx="21.5" cy="28.5" r="0.8" fill="#FFF" opacity="0.8"/>
+  
+  <!-- Windows -->
+  <rect x="12" y="21" width="3.5" height="3.5" rx="0.5" fill="#FFF" opacity="0.9"/>
+  <rect x="24.5" y="21" width="3.5" height="3.5" rx="0.5" fill="#FFF" opacity="0.9"/>
+  
+  <!-- Window crosses -->
+  <line x1="13.75" y1="21" x2="13.75" y2="24.5" stroke="url(#houseGradient)" stroke-width="0.3"/>
+  <line x1="12" y1="22.75" x2="15.5" y2="22.75" stroke="url(#houseGradient)" stroke-width="0.3"/>
+  <line x1="26.25" y1="21" x2="26.25" y2="24.5" stroke="url(#houseGradient)" stroke-width="0.3"/>
+  <line x1="24.5" y1="22.75" x2="28" y2="22.75" stroke="url(#houseGradient)" stroke-width="0.3"/>
+  
+  <!-- Chimney -->
+  <rect x="25" y="12" width="3" height="6" fill="url(#doorGradient)"/>
+  
+  <!-- Smoke (friendly touch) -->
+  <circle cx="27" cy="10" r="1" fill="#E5E7EB" opacity="0.6"/>
+  <circle cx="28.5" cy="8.5" r="0.8" fill="#E5E7EB" opacity="0.4"/>
+  <circle cx="26.2" cy="7.8" r="0.6" fill="#E5E7EB" opacity="0.3"/>
+</svg>

@@ -1,0 +1,99 @@
+{
+  "shed": {
+    "heritage_item_check": {
+      "condition": "!heritageOverlay",
+      "clause": "Codes SEPP 2008 cl 2.17",
+      "description": "Not on heritage item or draft heritage item"
+    },
+    "foreshore_check": {
+      "condition": "!foreshoreArea",
+      "clause": "Codes SEPP 2008 cl 2.17", 
+      "description": "Not in foreshore area"
+    },
+    "environmental_check": {
+      "condition": "!hasEnvironmentalOverlay",
+      "clause": "Codes SEPP 2008 cl 2.17",
+      "description": "Not in environmentally sensitive area"
+    },
+    "floor_area_ru_r5": {
+      "condition": "(['RU1','RU2','RU3','RU4','RU6','R5'].includes(zoning) && floorArea <= 50) || (!['RU1','RU2','RU3','RU4','RU6','R5'].includes(zoning))",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(b)(i)",
+      "description": "Floor area ≤50m² for RU*/R5 zones"
+    },
+    "floor_area_other": {
+      "condition": "(!['RU1','RU2','RU3','RU4','RU6','R5'].includes(zoning) && floorArea <= 20) || (['RU1','RU2','RU3','RU4','RU6','R5'].includes(zoning))",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(b)(ii)",
+      "description": "Floor area ≤20m² for other zones"
+    },
+    "height_limit": {
+      "condition": "height <= 3",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(c)",
+      "description": "Height ≤3.0m above ground level"
+    },
+    "setback_ru_r5": {
+      "condition": "(['RU1','RU2','RU3','RU4','RU6','R5'].includes(zoning) && distanceFromBoundary >= 5) || (!['RU1','RU2','RU3','RU4','RU6','R5'].includes(zoning))",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(d)(i)",
+      "description": "≥5.0m setback for RU*/R5 zones"
+    },
+    "setback_other": {
+      "condition": "(!['RU1','RU2','RU3','RU4','RU6','R5'].includes(zoning) && distanceFromBoundary >= 0.9) || (['RU1','RU2','RU3','RU4','RU6','R5'].includes(zoning))",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(d)(ii)", 
+      "description": "≥0.9m setback for other zones"
+    },
+    "building_line": {
+      "condition": "['RU1','RU2','RU3','RU4','RU6'].includes(zoning) || behindBuildingLine",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(e)",
+      "description": "Behind building line (non-RU zones)"
+    },
+    "not_shipping_container": {
+      "condition": "!isShippingContainer",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(f)",
+      "description": "Not a shipping container"
+    },
+    "stormwater": {
+      "condition": "stormwaterManaged",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(g)",
+      "description": "Stormwater managed appropriately"
+    },
+    "metal_materials": {
+      "condition": "!hasMetalComponents || !isResidentialZone || isLowReflectiveMetal",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(h)",
+      "description": "Metal components low-reflective in residential zones"
+    },
+    "bushfire_materials": {
+      "condition": "!bushfireProne || distanceFromDwelling >= 5 || isNonCombustible",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(i)",
+      "description": "Non-combustible if <5m from dwelling in bushfire area"
+    },
+    "heritage_area": {
+      "condition": "!inHeritageArea || inRearYard",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(j)",
+      "description": "In rear yard if in heritage conservation area"
+    },
+    "fire_safety": {
+      "condition": "!interferesWith FireSafety",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(k)",
+      "description": "Does not interfere with fire safety"
+    },
+    "class_10_building": {
+      "condition": "isClass10Building",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(l)",
+      "description": "Class 10 (ancillary) building"
+    },
+    "non_habitable": {
+      "condition": "!isHabitable",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(l)",
+      "description": "Non-habitable use"
+    },
+    "easement_setback": {
+      "condition": "distanceFromEasement >= 1",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(m)",
+      "description": "≥1.0m from registered easements"
+    },
+    "structure_count": {
+      "condition": "structureCount <= 2",
+      "clause": "Codes SEPP 2008 cl 2.18(2)",
+      "description": "≤2 exempt structures on lot"
+    }
+  }
+}

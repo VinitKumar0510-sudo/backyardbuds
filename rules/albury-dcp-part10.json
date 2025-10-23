@@ -1,0 +1,54 @@
+{
+  "dwelling_house": {
+    "landscaping": {
+      "300-450": { "percentage": 15, "clause": "DCP Part 10, Division D, Clause 2.a.i" },
+      "450-600": { "percentage": 20, "clause": "DCP Part 10, Division D, Clause 2.a.i" },
+      "600-900": { "percentage": 30, "clause": "DCP Part 10, Division D, Clause 2.a.i" },
+      "900-1500": { "percentage": 40, "clause": "DCP Part 10, Division D, Clause 2.a.i" },
+      "1500+": { "percentage": 45, "clause": "DCP Part 10, Division D, Clause 2.a.i" }
+    },
+    "setbacks": {
+      "side": {
+        "height_4.5m_or_less": { "minimum": 0.9, "clause": "DCP Part 10, Division D, Clause 2.c.v" },
+        "height_over_4.5m": { "minimum": 1.5, "clause": "DCP Part 10, Division D, Clause 2.c.v" }
+      },
+      "rear": {
+        "height_4.5m_or_less": { "minimum": 2.0, "clause": "DCP Part 10, Division D, Clause 2.c.vi" },
+        "height_over_4.5m": { "minimum": 6.0, "clause": "DCP Part 10, Division D, Clause 2.c.vi" }
+      }
+    },
+    "garage_width": {
+      "7-12m_lot": { "maximum": 3.2, "clause": "DCP Part 10, Division D, Clause 2.g.iii" },
+      "12-24m_lot": { "maximum": 6.0, "clause": "DCP Part 10, Division D, Clause 2.g.iii" },
+      "24m+_lot": { "maximum": 9.2, "clause": "DCP Part 10, Division D, Clause 2.g.iii" }
+    },
+    "earthworks": {
+      "maximum_difference": { "limit": 0.6, "clause": "DCP Part 10, Division D, Clause 2.b.iv" }
+    },
+    "private_open_space": {
+      "minimum_area": { "total": 36, "principal": 16, "clause": "DCP Part 10, Division D, Clause 2.e.v" },
+      "minimum_dimension": { "width": 4, "clause": "DCP Part 10, Division D, Clause 2.e.v" }
+    }
+  },
+  "secondary_dwelling": {
+    "private_open_space": {
+      "ground_level": { "minimum": 16, "clause": "DCP Part 10, Division D, Clause 2.e.viii" },
+      "above_ground": { "minimum": 12, "clause": "DCP Part 10, Division D, Clause 2.e.viii" },
+      "minimum_dimension": { "width": 4, "clause": "DCP Part 10, Division D, Clause 2.e.viii" }
+    }
+  },
+  "ancillary_development": {
+    "shed_garage": {
+      "maximum_floor_area": { "percentage": 60, "clause": "DCP Part 10, Division D, Clause 3.i" },
+      "wall_height": {
+        "900mm_setback": { "maximum": 3.3, "clause": "DCP Part 10, Division D, Clause 3.iii" },
+        "1.5m_setback": { "maximum": 3.6, "clause": "DCP Part 10, Division D, Clause 3.iii" }
+      },
+      "setbacks": {
+        "front": { "minimum": "3m behind dwelling", "clause": "DCP Part 10, Division D, Clause 3.iv" },
+        "side": { "minimum": 0.9, "clause": "DCP Part 10, Division D, Clause 3.v" },
+        "rear": { "minimum": 0.9, "clause": "DCP Part 10, Division D, Clause 3.vi" }
+      }
+    }
+  }
+}

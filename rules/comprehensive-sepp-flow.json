@@ -1,0 +1,131 @@
+{
+  "general_checks": {
+    "G1_project_type": {
+      "question": "What type of structure are you planning to build?",
+      "options": ["shed", "patio", "pergola", "carport", "deck", "other"],
+      "fail_condition": "structureType === 'other'",
+      "fail_message": "This app only covers sheds, patios, pergolas, carports and decks for exempt development. For other structures, please contact Albury Council.",
+      "sepp_ref": "Codes SEPP 2008, Part 2"
+    },
+    "G2_albury_lga": {
+      "question": "Is your property in Albury LGA?",
+      "condition": "inAlburyLGA === true",
+      "fail_message": "This app only covers properties in Albury, NSW",
+      "sepp_ref": "Project constraint (pilot scope)"
+    },
+    "G3_zoning": {
+      "question": "Is your property in a residential, rural, business, or industrial zone?",
+      "condition": "!['C3','C4','SP2','W2','RE1','RE2','E1','E2','E3','E4'].includes(zoning)",
+      "fail_message": "This development is not exempt in your zoning. For special consideration, contact Albury Council.",
+      "sepp_ref": "Pt 2 Div 1 cl. 1.16(1)(c)"
+    },
+    "G4_heritage": {
+      "question": "Is your property heritage-listed, draft heritage, or archaeological?",
+      "condition": "!heritageOverlay",
+      "fail_message": "Exempt development is not allowed on heritage/archaeological land. For special consideration, contact Albury Council.",
+      "sepp_ref": "cl. 1.16(1)(d)"
+    },
+    "G5_bushfire": {
+      "question": "Is the property in a bushfire prone area?",
+      "condition": "!bushfireProne",
+      "fail_message": "Your property is bushfire-prone, exempt development is not permitted here. For special consideration, contact Albury Council.",
+      "sepp_ref": "cl. 1.16(1)(d) + special codes"
+    },
+    "G6_flood": {
+      "question": "Is the property in a flood control area?",
+      "condition": "!floodOverlay",
+      "fail_message": "This property is on a flood control lot, exempt development is not permitted. For special consideration, contact Albury Council.",
+      "sepp_ref": "cl. 1.16(1)(d)"
+    },
+    "G7_foreshore": {
+      "question": "Is the property in a foreshore area?",
+      "condition": "!foreshoreOverlay",
+      "fail_message": "Your development is within a foreshore setback, exempt development is not permitted. For special consideration, contact Albury Council.",
+      "sepp_ref": "cl. 1.16(1)(f)"
+    },
+    "G8_environmental": {
+      "question": "Is the property in an environmental sensitive area?",
+      "condition": "!hasEnvironmentalOverlay",
+      "fail_message": "Exempt development cannot be carried out on sensitive land. For special consideration, contact Albury Council.",
+      "sepp_ref": "cl. 1.16(1)(d)"
+    },
+    "G9_strata": {
+      "question": "Do strata or community title by-laws allow this work?",
+      "condition": "strataAllowed !== false",
+      "fail_message": "Strata/common property restrictions prohibit this development. For special consideration, contact Albury Council.",
+      "sepp_ref": "cl. 1.16(1)(e)"
+    },
+    "G10_bca": {
+      "question": "Does your project comply with the Building Code of Australia (BCA)?",
+      "condition": "bcaCompliant === true",
+      "fail_message": "All exempt development must comply with the BCA.",
+      "sepp_ref": "cl. 1.16(1)(a)"
+    },
+    "G11_plumbing": {
+      "question": "Does your project involve any plumbing or sewer work that requires separate approval?",
+      "condition": "plumbingApprovalRequired !== true || plumbingApprovalObtained === true",
+      "fail_message": "Exempt development cannot include plumbing or sewer works that require separate approval",
+      "sepp_ref": "cl. 1.16(1)(g)"
+    },
+    "G12_utilities": {
+      "question": "Does your work have any impact on utilities/easements?",
+      "condition": "!impactsUtilities",
+      "fail_message": "Exempt development must not impact services.",
+      "sepp_ref": "cl. 1.16(1)(g)"
+    },
+    "G13_vegetation": {
+      "question": "Does your work require removal of protected/significant vegetation?",
+      "condition": "vegetationRemovalRequired !== true || vegetationApprovalObtained === true",
+      "fail_message": "Exempt development must not involve removal of protected vegetation.",
+      "sepp_ref": "cl. 1.16(1)(i)"
+    },
+    "G14_asbestos": {
+      "question": "Does your work require removal of asbestos, and if yes will it be done by licensed asbestos removalist?",
+      "condition": "asbestosRemovalRequired !== true || licensedAsbestosRemoval === true",
+      "fail_message": "If asbestos is present, it must be removed by a licensed specialist. DIY asbestos removal is not permitted.",
+      "sepp_ref": "cl. 1.16(1)(h)"
+    },
+    "G15_stormwater": {
+      "question": "Will roofwater or stormwater be managed on-site?",
+      "condition": "stormwaterManaged === true",
+      "fail_message": "Stormwater must be managed on-site for exempt development.",
+      "sepp_ref": "cl. 1.16(1)(g)"
+    },
+    "G16_ancillary": {
+      "question": "Is the development ancillary to a lawful dwelling or use on the land?",
+      "condition": "ancillaryToLawfulUse === true",
+      "fail_message": "Development must be associated with a lawful use.",
+      "sepp_ref": "cl. 1.16(1)(b)"
+    },
+    "G17_parking": {
+      "question": "Will the project reduce required parking or access on the property?",
+      "condition": "!reducesParking",
+      "fail_message": "Exempt development must not reduce parking or access.",
+      "sepp_ref": "cl. 1.16(1)(g)"
+    },
+    "G18_materials": {
+      "question": "Are the materials/finish suitable and compliant (no glare, reflective or unsafe finishes)?",
+      "condition": "materialsCompliant === true",
+      "fail_message": "Your materials/finish are not suitable for exempt development.",
+      "sepp_ref": "cl. 1.16(1)(h)"
+    },
+    "G19_privacy": {
+      "question": "Does the proposal meet privacy and overlooking requirements?",
+      "condition": "privacyCompliant === true",
+      "fail_message": "Exempt development must not adversely affect privacy or amenity.",
+      "sepp_ref": "cl. 1.16(1)(h)/(i)"
+    },
+    "G20_other_approvals": {
+      "question": "If other approvals are required (e.g., Roads Act, Heritage Act), have they been obtained?",
+      "condition": "otherApprovalsRequired !== true || otherApprovalsObtained === true",
+      "fail_message": "You must obtain other required approvals before this can be exempt.",
+      "sepp_ref": "cl. 1.16(1)(k)/(l)"
+    },
+    "G21_disclaimer": {
+      "question": "Do you accept the disclaimer and acknowledge records will be logged?",
+      "condition": "disclaimerAccepted === true",
+      "fail_message": "You must accept the disclaimer to continue.",
+      "sepp_ref": "Council logging policy + general SEPP context"
+    }
+  }
+}

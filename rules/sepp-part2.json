@@ -1,0 +1,212 @@
+{
+  "shed": {
+    "heritage_item_check": {
+      "condition": "!heritageOverlay",
+      "clause": "Codes SEPP 2008 cl 2.17",
+      "description": "Not on heritage item"
+    },
+    "environmental_check": {
+      "condition": "!hasEnvironmentalOverlay",
+      "clause": "Codes SEPP 2008 cl 2.17",
+      "description": "Not in environmentally sensitive area"
+    },
+    "floor_area_ru_r5": {
+      "condition": "(['RU1','RU2','RU3','RU4','RU6','R5'].includes(zoning) && floorArea <= 50) || (!['RU1','RU2','RU3','RU4','RU6','R5'].includes(zoning))",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(b)(i)",
+      "description": "Floor area ≤50m² for RU*/R5 zones"
+    },
+    "floor_area_other": {
+      "condition": "(!['RU1','RU2','RU3','RU4','RU6','R5'].includes(zoning) && floorArea <= 20) || (['RU1','RU2','RU3','RU4','RU6','R5'].includes(zoning))",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(b)(ii)",
+      "description": "Floor area ≤20m² for other zones"
+    },
+    "height_limit": {
+      "condition": "height <= 3",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(c)",
+      "description": "Height ≤3.0m above ground level"
+    },
+    "setback_ru_r5": {
+      "condition": "(['RU1','RU2','RU3','RU4','RU6','R5'].includes(zoning) && distanceFromBoundary >= 5) || (!['RU1','RU2','RU3','RU4','RU6','R5'].includes(zoning))",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(d)(i)",
+      "description": "≥5.0m setback for RU*/R5 zones"
+    },
+    "setback_other": {
+      "condition": "(!['RU1','RU2','RU3','RU4','RU6','R5'].includes(zoning) && distanceFromBoundary >= 0.9) || (['RU1','RU2','RU3','RU4','RU6','R5'].includes(zoning))",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(d)(ii)",
+      "description": "≥0.9m setback for other zones"
+    },
+    "building_line": {
+      "condition": "['RU1','RU2','RU3','RU4','RU6'].includes(zoning) || behindBuildingLine",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(e)",
+      "description": "Behind building line (non-RU zones)"
+    },
+    "bushfire_materials": {
+      "condition": "!bushfireProne || distanceFromDwelling >= 5 || isNonCombustible",
+      "clause": "Codes SEPP 2008 cl 2.18(1)(i)",
+      "description": "Non-combustible if <5m from dwelling in bushfire area"
+    },
+    "structure_count": {
+      "condition": "structureCount <= 2",
+      "clause": "Codes SEPP 2008 cl 2.18(2)",
+      "description": "≤2 exempt structures on lot"
+    }
+  },
+  "patio": {
+    "heritage_item_check": {
+      "condition": "!heritageOverlay",
+      "clause": "Codes SEPP 2008 cl 2.17",
+      "description": "Not on heritage item"
+    },
+    "environmental_check": {
+      "condition": "!hasEnvironmentalOverlay",
+      "clause": "Codes SEPP 2008 cl 2.17",
+      "description": "Not in environmentally sensitive area"
+    },
+    "floor_area_limit": {
+      "condition": "floorArea <= 25",
+      "clause": "Codes SEPP 2008 cl 2.19(1)(b)",
+      "description": "Floor area ≤25m²"
+    },
+    "height_limit": {
+      "condition": "height <= 3",
+      "clause": "Codes SEPP 2008 cl 2.19(1)(c)",
+      "description": "Height ≤3.0m above ground level"
+    },
+    "setback_limit": {
+      "condition": "distanceFromBoundary >= 0.9",
+      "clause": "Codes SEPP 2008 cl 2.19(1)(d)",
+      "description": "≥0.9m setback from boundaries"
+    },
+    "building_line": {
+      "condition": "behindBuildingLine",
+      "clause": "Codes SEPP 2008 cl 2.19(1)(e)",
+      "description": "Behind building line of road frontage"
+    },
+    "attached_to_dwelling": {
+      "condition": "attachedToDwelling",
+      "clause": "Codes SEPP 2008 cl 2.19(1)(f)",
+      "description": "Attached to existing dwelling"
+    },
+    "bushfire_materials": {
+      "condition": "!bushfireProne || distanceFromDwelling >= 5 || isNonCombustible",
+      "clause": "Codes SEPP 2008 cl 2.19(1)(g)",
+      "description": "Non-combustible if <5m from dwelling in bushfire area"
+    }
+  },
+  "pergola": {
+    "heritage_item_check": {
+      "condition": "!heritageOverlay",
+      "clause": "Codes SEPP 2008 cl 2.17",
+      "description": "Not on heritage item"
+    },
+    "environmental_check": {
+      "condition": "!hasEnvironmentalOverlay",
+      "clause": "Codes SEPP 2008 cl 2.17",
+      "description": "Not in environmentally sensitive area"
+    },
+    "floor_area_limit": {
+      "condition": "floorArea <= 20",
+      "clause": "Codes SEPP 2008 cl 2.20(1)(b)",
+      "description": "Floor area ≤20m²"
+    },
+    "height_limit": {
+      "condition": "height <= 3",
+      "clause": "Codes SEPP 2008 cl 2.20(1)(c)",
+      "description": "Height ≤3.0m above ground level"
+    },
+    "setback_limit": {
+      "condition": "distanceFromBoundary >= 0.9",
+      "clause": "Codes SEPP 2008 cl 2.20(1)(d)",
+      "description": "≥0.9m setback from boundaries"
+    },
+    "building_line": {
+      "condition": "behindBuildingLine",
+      "clause": "Codes SEPP 2008 cl 2.20(1)(e)",
+      "description": "Behind building line of road frontage"
+    },
+    "open_structure": {
+      "condition": "isOpenStructure",
+      "clause": "Codes SEPP 2008 cl 2.20(1)(f)",
+      "description": "Open structure (no walls/enclosure)"
+    }
+  },
+  "carport": {
+    "heritage_item_check": {
+      "condition": "!heritageOverlay",
+      "clause": "Codes SEPP 2008 cl 2.17",
+      "description": "Not on heritage item"
+    },
+    "environmental_check": {
+      "condition": "!hasEnvironmentalOverlay",
+      "clause": "Codes SEPP 2008 cl 2.17",
+      "description": "Not in environmentally sensitive area"
+    },
+    "floor_area_limit": {
+      "condition": "floorArea <= 40",
+      "clause": "Codes SEPP 2008 cl 2.21(1)(b)",
+      "description": "Floor area ≤40m²"
+    },
+    "height_limit": {
+      "condition": "height <= 3",
+      "clause": "Codes SEPP 2008 cl 2.21(1)(c)",
+      "description": "Height ≤3.0m above ground level"
+    },
+    "setback_limit": {
+      "condition": "distanceFromBoundary >= 0.9",
+      "clause": "Codes SEPP 2008 cl 2.21(1)(d)",
+      "description": "≥0.9m setback from boundaries"
+    },
+    "building_line": {
+      "condition": "behindBuildingLine",
+      "clause": "Codes SEPP 2008 cl 2.21(1)(e)",
+      "description": "Behind building line of road frontage"
+    },
+    "open_structure": {
+      "condition": "isOpenOnOneSide",
+      "clause": "Codes SEPP 2008 cl 2.21(1)(f)",
+      "description": "Open on at least one side"
+    },
+    "vehicle_use": {
+      "condition": "forVehicleUse",
+      "clause": "Codes SEPP 2008 cl 2.21(1)(g)",
+      "description": "Used for vehicle accommodation"
+    }
+  },
+  "deck": {
+    "heritage_item_check": {
+      "condition": "!heritageOverlay",
+      "clause": "Codes SEPP 2008 cl 2.17",
+      "description": "Not on heritage item"
+    },
+    "environmental_check": {
+      "condition": "!hasEnvironmentalOverlay",
+      "clause": "Codes SEPP 2008 cl 2.17",
+      "description": "Not in environmentally sensitive area"
+    },
+    "floor_area_limit": {
+      "condition": "floorArea <= 25",
+      "clause": "Codes SEPP 2008 cl 2.22(1)(b)",
+      "description": "Floor area ≤25m²"
+    },
+    "height_limit": {
+      "condition": "height <= 1",
+      "clause": "Codes SEPP 2008 cl 2.22(1)(c)",
+      "description": "Height ≤1.0m above ground level"
+    },
+    "setback_limit": {
+      "condition": "distanceFromBoundary >= 0.9",
+      "clause": "Codes SEPP 2008 cl 2.22(1)(d)",
+      "description": "≥0.9m setback from boundaries"
+    },
+    "building_line": {
+      "condition": "behindBuildingLine",
+      "clause": "Codes SEPP 2008 cl 2.22(1)(e)",
+      "description": "Behind building line of road frontage"
+    },
+    "attached_to_dwelling": {
+      "condition": "attachedToDwelling",
+      "clause": "Codes SEPP 2008 cl 2.22(1)(f)",
+      "description": "Attached to existing dwelling"
+    }
+  }
+}// SEPP requirements
