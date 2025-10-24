@@ -1,4 +1,4 @@
-# 🏡 Backyard Buds - Setup Guide
+# 🏡 Backyard Bud - Setup Guide
 
 ## Prerequisites
 Make sure you have these installed:
@@ -45,7 +45,7 @@ npm run dev
 
 ## 🎉 That's it!
 
-You should now see the beautiful Backyard Buds application running!
+You should now see the beautiful Backyard Bud application running!
 
 ## Troubleshooting
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🔄 Restarting Backyard Buds Application..."
+echo "🔄 Restarting Backyard Bud Application..."
 
 # Kill existing processes
 echo "Stopping existing processes..."

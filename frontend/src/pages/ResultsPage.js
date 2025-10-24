@@ -197,7 +197,7 @@ const ResultsPage = () => {
       {/* Disclaimer */}
       <div className="mt-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
         <p className="text-sm text-gray-600 text-center">
-          <strong>Disclaimer:</strong> Backyard Buds is your friendly companion for educational purposes. 
+          <strong>Disclaimer:</strong> Backyard Bud is your friendly companion for educational purposes. 
           Results should not be considered as official planning advice. Always consult with 
           qualified professionals and relevant authorities for official planning guidance.
         </p>
