@@ -1,0 +1,37 @@
+Feature,Garden_Structures,Carports,Outdoor_Entertainment,Test_Count,Coverage_Status
+Size Limits - Urban (20m²),✓,✓,N/A,15,Complete
+Size Limits - Rural (50m²),✓,✓,N/A,8,Complete
+Size Limits - OE (25m²),N/A,N/A,✓,4,Complete
+Height Limits (3m),✓,✓,✓,12,Complete
+Boundary Setbacks - Urban (0.9m),✓,✓,✓,18,Complete
+Boundary Setbacks - Rural (5m),✓,✓,✓,10,Complete
+Heritage Overlay Restrictions,✓,✓,✓,4,Complete
+Environmental Overlay - Garden Structures,✓,N/A,N/A,3,Complete
+Environmental Overlay - Others,N/A,✓,✓,3,Complete
+Bushfire Material Requirements,✓,✓,✓,8,Complete
+Easement Distance (1m),✓,N/A,N/A,4,Complete
+Flood Overlay (Informational),✓,✓,✓,3,Complete
+Wall Height Limits (1.4m),N/A,N/A,✓,4,Complete
+Floor Height Limits (1m),N/A,N/A,✓,4,Complete
+Zone R1,✓,✓,✓,25,Complete
+Zone R2,✓,✓,✓,3,Complete
+Zone R3,✓,✓,✓,3,Complete
+Zone R4,✓,✓,✓,2,Complete
+Zone R5,✓,✓,✓,3,Complete
+Zone RU1,✓,✓,N/A,6,Complete
+Zone RU2,✓,✓,N/A,4,Complete
+Zone RU3,✓,N/A,N/A,2,Complete
+Zone RU4,✓,N/A,N/A,2,Complete
+Zone RU6,N/A,N/A,N/A,1,Complete
+Zone W2,✓,N/A,N/A,2,Complete
+Zone C3,✓,✓,N/A,4,Complete
+Zone E2,N/A,✓,N/A,2,Complete
+Zone E4,✓,N/A,N/A,3,Complete
+Zone B1,N/A,✓,N/A,1,Complete
+Zone B4,✓,✓,N/A,2,Complete
+Zone MU1,✓,✓,N/A,2,Complete
+Lot Size Thresholds (300m²),N/A,✓,N/A,4,Complete
+Material Compliance,✓,✓,✓,8,Complete
+Edge Case Testing,✓,✓,✓,16,Complete
+Multiple Overlay Combinations,✓,✓,✓,4,Complete
+Extreme Value Testing,✓,✓,✓,3,Complete

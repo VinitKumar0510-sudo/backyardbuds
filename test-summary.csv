@@ -1,0 +1,26 @@
+Test_Category,Total_Tests,Passed,Failed,Success_Rate,Key_Findings
+Garden Structures Basic,4,4,0,100%,All basic size/height/setback validations working correctly
+Garden Structures Rural,4,4,0,100%,Rural zones (RU1-RU6) properly handle 50m² limits and 5m setbacks
+Garden Structures Heritage,2,2,0,100%,Heritage overlay correctly blocks all structures requiring DA
+Garden Structures Environmental,2,2,0,100%,Environmental overlay correctly prohibits garden structures
+Garden Structures Bushfire,3,3,0,100%,Bushfire material requirements properly enforced <5m from dwelling
+Garden Structures Easement,3,3,0,100%,Easement 1m setback requirement correctly validated
+Garden Structures Flood,2,2,0,100%,Flood overlay treated as informational only (no restrictions)
+Carports Basic,4,4,0,100%,Carport size limits correctly applied based on lot size thresholds
+Carports Rural,3,3,0,100%,Rural carport limits (50m²) and R5 zone treatment working
+Carports Environmental,2,2,0,100%,Environmental overlay triggers conditional assessment for carports
+Carports Heritage,1,1,0,100%,Heritage overlay correctly blocks carports
+Outdoor Entertainment Basic,3,3,0,100%,Basic OE size and height limits properly enforced
+Outdoor Entertainment Walls,2,2,0,100%,Wall height 1.4m limit correctly validated
+Outdoor Entertainment Floor,2,2,0,100%,Floor height 1m limit correctly validated
+Outdoor Entertainment Bushfire,3,3,0,100%,Bushfire material requirements for OE structures working
+Outdoor Entertainment Environmental,1,1,0,100%,Environmental overlay triggers conditional for OE
+Zone Variations,8,8,0,100%,All zone types (R1-R5 RU1-RU6 W2 C3 MU1 B4) handled correctly
+Edge Cases,16,16,0,100%,Boundary conditions and exact limit testing all pass
+Bushfire Edge Cases,4,4,0,100%,5m dwelling distance threshold properly implemented
+Easement Edge Cases,3,3,0,100%,1m easement distance threshold working correctly
+Multiple Overlays,4,4,0,100%,Complex overlay combinations handled appropriately
+Stress Tests,3,3,0,100%,Extreme values and edge cases properly rejected/approved
+Industrial Zones,2,2,0,100%,E2 and E4 zones working with appropriate limits
+Commercial Zones,2,2,0,100%,B1 and B4 zones functioning correctly
+TOTAL,83,83,0,100%,Complete SEPP compliance validation across all scenarios

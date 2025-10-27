@@ -84,18 +84,19 @@ class EnhancedRulesEngine {
         this.checkGeneralRequirements(userInputs, issues, conditions, legislationApplied);
 
         // Step 2: Check Heritage & Environmental Overlays
-        this.checkOverlays(propertyData, structureType, issues, conditions, legislationApplied);
+        this.checkOverlays(propertyData, structureType, userInputs, issues, conditions, legislationApplied);
 
         // Step 3: Check Structure-Specific Requirements
         this.checkStructureSpecificRequirements(propertyData, userInputs, issues, conditions, legislationApplied);
 
         // Step 4: Determine Final Result
-        const result = this.determineFinalResult(issues, conditions);
+        const finalResult = this.determineFinalResult(issues, conditions);
 
         return {
-            result,
-            issues,
-            conditions,
+            result: finalResult.status,
+            message: finalResult.message,
+            issues: finalResult.issues || issues,
+            conditions: finalResult.conditions || conditions,
             warnings,
             infoNotes,
             legislationApplied,
@@ -151,59 +152,74 @@ class EnhancedRulesEngine {
         });
     }
 
-    checkOverlays(propertyData, structureType, issues, conditions, legislationApplied) {
-        // Heritage check - ALL structure types rejected unless exemption
+    checkOverlays(propertyData, structureType, userInputs, issues, conditions, legislationApplied) {
+        // Heritage check - Reject unless Heritage Act exemption obtained
         if (propertyData.heritage_overlay) {
-            issues.push("❌ HERITAGE OVERLAY RESTRICTION - May proceed if you have Heritage Act exemption under section 57");
-            const heritageRules = this.getRelevantLegislation('General Requirements', 'Heritage Conservation');
-            heritageRules.forEach(rule => {
-                legislationApplied.push({
-                    clause: rule['Clause Reference'],
-                    text: rule['Exact Legislative Text'],
-                    plain: rule['Plain English Explanation'],
-                    status: '❌ FAILS'
-                });
+            issues.push("❌ HERITAGE OVERLAY - Heritage overlay prohibits structures unless Heritage Act s.57 exemption obtained");
+            legislationApplied.push({
+                clause: '1.16(1)(c)',
+                text: 'must not be carried out on heritage item',
+                plain: 'Heritage overlay requires Development Application',
+                status: '❌ FAILS'
             });
         }
 
-        // Environmental check - Garden Structures rejected, others conditional
+        // Environmental overlay - Garden Structures rejected, others conditional
         if (propertyData.has_environmental_overlay) {
             if (structureType === 'Garden Structures & Storage') {
-                issues.push("❌ ENVIRONMENTAL OVERLAY RESTRICTION - Garden structures not permitted in environmentally sensitive areas");
-            } else {
-                conditions.push("⚠️ ENVIRONMENTAL ASSESSMENT MAY BE REQUIRED - Contact council environmental planning department");
-            }
-            
-            const envRules = this.getRelevantLegislation('General Requirements', 'Environmental Protection');
-            envRules.forEach(rule => {
+                issues.push("❌ ENVIRONMENTAL OVERLAY - Environmental overlay prohibits garden structures");
                 legislationApplied.push({
-                    clause: rule['Clause Reference'],
-                    text: rule['Exact Legislative Text'],
-                    plain: rule['Plain English Explanation'],
-                    status: structureType === 'Garden Structures & Storage' ? '❌ FAILS' : '⚠️ CONDITIONAL'
+                    clause: '2.17',
+                    text: 'not constructed or installed in an environmentally sensitive area',
+                    plain: 'Garden structures prohibited in environmentally sensitive areas',
+                    status: '❌ FAILS'
                 });
-            });
+            } else {
+                conditions.push("⚠️ ENVIRONMENTAL ASSESSMENT REQUIRED - Environmental assessment needed");
+                legislationApplied.push({
+                    clause: '1.16(1)(b1)',
+                    text: 'must not be carried out on declared biodiversity or critical habitat areas',
+                    plain: 'Environmental assessment required',
+                    status: '⚠️ CONDITIONAL'
+                });
+            }
         }
 
-        // Easement check - Only Garden Structures have specific requirements
-        if (propertyData.has_easement) {
-            if (structureType === 'Garden Structures & Storage') {
-                conditions.push("⚠️ EASEMENT PRESENT - Structure must be at least 1m from any registered easement");
+        // Easement check - Garden Structures only
+        if (propertyData.has_easement && structureType === 'Garden Structures & Storage') {
+            if (userInputs.easement_distance !== undefined) {
+                if (userInputs.easement_distance < 1.0) {
+                    issues.push(`❌ EASEMENT SETBACK VIOLATION - Structure ${userInputs.easement_distance}m from easement. Must be ≥1m`);
+                    legislationApplied.push({
+                        clause: '2.18(1)(m)',
+                        text: 'be located at least 1m from any registered easement',
+                        plain: 'Must be at least 1 meter from any easement',
+                        status: '❌ FAILS'
+                    });
+                } else {
+                    legislationApplied.push({
+                        clause: '2.18(1)(m)',
+                        text: 'be located at least 1m from any registered easement',
+                        plain: 'Must be at least 1 meter from any easement',
+                        status: '✓ COMPLIES'
+                    });
+                }
+            } else {
+                conditions.push("⚠️ MORE INFO REQUIRED - EASEMENT LOCATION - Must be ≥1m from easement. Distance not provided - need to verify");
                 legislationApplied.push({
                     clause: '2.18(1)(m)',
                     text: 'be located at least 1m from any registered easement',
                     plain: 'Must be at least 1 meter from any easement',
-                    status: '⚠️ MORE INFO REQUIRED'
-                });
-            } else {
-                // Informational only for other types
-                legislationApplied.push({
-                    clause: 'N/A',
-                    text: 'Property has easement - ensure structure doesn\'t block access',
-                    plain: 'Check easement location and avoid building over it',
-                    status: 'ℹ️ INFORMATIONAL'
+                    status: '⚠️ CONDITIONAL'
                 });
             }
+        } else if (propertyData.has_easement) {
+            legislationApplied.push({
+                clause: 'N/A',
+                text: 'Property has easement - ensure structure doesn\'t block access',
+                plain: 'Check easement location and avoid building over it',
+                status: 'ℹ️ INFORMATIONAL'
+            });
         }
 
         // Flood overlay - Informational only, no restrictions
@@ -237,7 +253,7 @@ class EnhancedRulesEngine {
         this.checkDrainageRequirements(userInputs, issues, legislationApplied);
 
         // Structure-specific checks
-        this.checkStructureSpecificRules(userInputs, issues, legislationApplied);
+        this.checkStructureSpecificRules(userInputs, issues, conditions, legislationApplied, propertyData);
     }
 
     checkSizeLimits(propertyData, userInputs, issues, legislationApplied) {
@@ -248,10 +264,12 @@ class EnhancedRulesEngine {
         const sizeRules = this.getRelevantLegislation(structureType, 'Size Limits');
         
         let maxSize;
+        const ruralZones = ['RU1', 'RU2', 'RU3', 'RU4', 'RU6', 'R5', 'W2', 'C3']; // W2 and C3 treated as rural
+        
         if (structureType === 'Garden Structures & Storage') {
-            maxSize = ['RU1', 'RU2', 'RU3', 'RU4', 'RU6', 'R5'].includes(zone) ? 50 : 20;
+            maxSize = ruralZones.includes(zone) ? 50 : 20;
         } else if (structureType === 'Carports') {
-            if (['RU1', 'RU2', 'RU3', 'RU4', 'RU6', 'R5'].includes(zone) && lotSize > 300) {
+            if (ruralZones.includes(zone) && lotSize > 300) {
                 maxSize = 50;
             } else if (lotSize > 300) {
                 maxSize = 25;
@@ -307,7 +325,8 @@ class EnhancedRulesEngine {
         const zone = propertyData.zone_type;
         const setbackRules = this.getRelevantLegislation(userInputs.structure_type, 'Boundary Setbacks');
         
-        const minSetback = ['RU1', 'RU2', 'RU3', 'RU4', 'RU6', 'R5'].includes(zone) ? 5 : 0.9;
+        const ruralZones = ['RU1', 'RU2', 'RU3', 'RU4', 'RU6', 'R5', 'W2', 'C3'];
+        const minSetback = ruralZones.includes(zone) ? 5 : 0.9;
         const setbackStatus = userInputs.boundary_distance >= minSetback ? '✓ COMPLIES' : '❌ FAILS';
         
         if (setbackStatus === '❌ FAILS') {
@@ -334,12 +353,18 @@ class EnhancedRulesEngine {
             
             let status, message;
             if (userInputs.dwelling_distance > 0 && userInputs.dwelling_distance < 5) {
-                conditions.push(`⚠️ MANDATORY: Must use non-combustible materials (steel, concrete, masonry) - structure is ${userInputs.dwelling_distance}m from dwelling`);
-                status = '⚠️ CONDITIONAL';
-                message = 'Non-combustible materials required - NO timber, plastic, or composite materials';
+                // Check if materials are specified as non-combustible
+                if (userInputs.isNonCombustible === false || userInputs.materials === 'timber') {
+                    conditions.push(`⚠️ MANDATORY: Must use non-combustible materials (steel, concrete, masonry) - structure is ${userInputs.dwelling_distance}m from dwelling`);
+                    status = '⚠️ CONDITIONAL';
+                    message = 'Non-combustible materials required - NO timber, plastic, or composite materials';
+                } else {
+                    status = '✓ OK';
+                    message = `Structure is ${userInputs.dwelling_distance}m from dwelling. Non-combustible materials compliant.`;
+                }
             } else if (userInputs.dwelling_distance >= 5) {
                 status = '✓ OK';
-                message = `Structure is ${userInputs.dwelling_distance}m from dwelling (more than 5m). Non-combustible materials not required but recommended.`;
+                message = `Structure is ${userInputs.dwelling_distance}m from dwelling (more than 5m). Non-combustible materials not required.`;
             } else {
                 status = '✓ OK';
                 message = 'No dwelling on property. No bushfire material restrictions.';
@@ -378,22 +403,17 @@ class EnhancedRulesEngine {
         });
     }
 
-    checkStructureSpecificRules(userInputs, issues, legislationApplied) {
+    checkStructureSpecificRules(userInputs, issues, conditions, legislationApplied, propertyData) {
         if (userInputs.structure_type === 'Garden Structures & Storage') {
+            // Existing checks
             if (userInputs.is_shipping_container) {
                 issues.push("❌ SHIPPING CONTAINERS NOT PERMITTED");
-                const shippingRule = this.rules.find(rule => 
-                    rule['Structure Type'] === userInputs.structure_type && 
-                    rule['Exact Legislative Text'].toLowerCase().includes('shipping container')
-                );
-                if (shippingRule) {
-                    legislationApplied.push({
-                        clause: shippingRule['Clause Reference'],
-                        text: shippingRule['Exact Legislative Text'],
-                        plain: shippingRule['Plain English Explanation'],
-                        status: '❌ FAILS'
-                    });
-                }
+                legislationApplied.push({
+                    clause: '2.18(1)(l)',
+                    text: 'not be a shipping container',
+                    plain: 'Shipping containers not permitted',
+                    status: '❌ FAILS'
+                });
             }
 
             if (userInputs.is_habitable) {
@@ -403,16 +423,128 @@ class EnhancedRulesEngine {
             if (userInputs.existing_garden_structures >= 2) {
                 issues.push("❌ MAXIMUM 2 GARDEN STRUCTURES PER LOT");
             }
+
+            // BUG FIX #3: Building line validation (non-rural zones only)
+            const ruralZones = ['RU1', 'RU2', 'RU3', 'RU4', 'RU6'];
+            if (!ruralZones.includes(propertyData.zone_type) && userInputs.behind_building_line === false) {
+                conditions.push("⚠️ BUILDING LINE SETBACK - Please verify with council that your structure location complies with building line requirements");
+                legislationApplied.push({
+                    clause: '2.18(1)(e)',
+                    text: 'be located behind the building line of any road frontage',
+                    plain: 'Must be behind building line (non-rural zones)',
+                    status: '⚠️ CONDITIONAL'
+                });
+            }
+
+            // BUG FIX #4: Metal reflectivity (residential zones only)
+            const residentialZones = ['R1', 'R2', 'R3', 'R4', 'R5', 'B4'];
+            if (userInputs.has_metal && residentialZones.includes(propertyData.zone_type) && !userInputs.metal_compliant) {
+                conditions.push("⚠️ METAL COMPONENTS - Please verify with council that metal components meet reflectivity requirements");
+                legislationApplied.push({
+                    clause: '2.18(1)(h)',
+                    text: 'be constructed of low reflective, factory pre-coloured materials if it is located on land in a residential zone',
+                    plain: 'Metal parts must be low-reflective and factory colored in residential zones',
+                    status: '⚠️ CONDITIONAL'
+                });
+            }
+
+            // BUG FIX #5: Heritage rear yard
+            if (propertyData.heritage_overlay && userInputs.in_rear_yard === false) {
+                conditions.push("⚠️ HERITAGE CONSERVATION - Please verify with council regarding rear yard placement requirements");
+                legislationApplied.push({
+                    clause: '2.18(1)(j)',
+                    text: 'be located in the rear yard if in heritage conservation area',
+                    plain: 'Must be in rear yard if in heritage conservation area',
+                    status: '⚠️ CONDITIONAL'
+                });
+            }
+
+            // BUG FIX #6: Adjacent building safety
+            if (userInputs.adjacent_building && userInputs.blocks_access) {
+                conditions.push("⚠️ ADJACENT BUILDING SAFETY - Please verify with council that your structure does not interfere with building access or fire safety");
+                legislationApplied.push({
+                    clause: '2.18(1)(k)',
+                    text: 'be located so that it does not interfere with the entry to, or exit from, or the fire safety measures contained within, that building',
+                    plain: 'Cannot block access or fire safety features of adjacent buildings',
+                    status: '⚠️ CONDITIONAL'
+                });
+            }
+
+            // BUG FIX #7: Cabana services
+            if (userInputs.is_cabana && userInputs.cabana_services) {
+                conditions.push("⚠️ CABANA SERVICES - Please verify with council regarding water/sewer connection requirements for cabanas");
+                legislationApplied.push({
+                    clause: '2.18(1)(n)',
+                    text: 'not be connected to water supply or sewerage services',
+                    plain: 'Cabanas cannot connect to water or sewer',
+                    status: '⚠️ CONDITIONAL'
+                });
+            }
+        }
+
+        // BUG FIX #8: Wall height validation for Outdoor Entertainment
+        if (userInputs.structure_type === 'Outdoor Entertainment Areas' && userInputs.has_walls && userInputs.wall_height > 1.4) {
+            issues.push(`❌ WALL HEIGHT VIOLATION - Wall height ${userInputs.wall_height}m exceeds maximum 1.4m allowed`);
+            legislationApplied.push({
+                clause: '2.12(1)(d)',
+                text: 'not have an enclosing wall higher than 1.4m',
+                plain: 'Any walls cannot be taller than 1.4 meters',
+                status: '❌ FAILS'
+            });
+        }
+
+        // Floor height validation for Outdoor Entertainment
+        if (userInputs.structure_type === 'Outdoor Entertainment Areas' && userInputs.floor_height > 1.0) {
+            issues.push(`❌ FLOOR HEIGHT VIOLATION - Floor height ${userInputs.floor_height}m exceeds maximum 1.0m allowed`);
+            legislationApplied.push({
+                clause: '2.12(1)(i)',
+                text: 'have a floor height not more than 1m above ground level',
+                plain: 'Floor cannot be more than 1 meter above existing ground level',
+                status: '❌ FAILS'
+            });
+        }
+
+        // Bushfire material validation for Outdoor Entertainment
+        if (userInputs.structure_type === 'Outdoor Entertainment Areas' && propertyData.bushfire_prone && userInputs.dwelling_distance < 5 && userInputs.materials === 'timber') {
+            issues.push(`❌ BUSHFIRE MATERIAL VIOLATION - Timber = combustible. Structure <5m from dwelling. Bushfire material requirement NOT met`);
+            legislationApplied.push({
+                clause: '2.12(1)(n)',
+                text: 'be constructed of non-combustible material if on bush fire prone land and less than 5m from dwelling',
+                plain: 'Must use non-combustible materials if on bushfire prone land within 5m of house',
+                status: '❌ FAILS'
+            });
+        }
+
+        // BUG FIX #10: Fascia connection for Carports
+        if (userInputs.structure_type === 'Carports' && userInputs.connected_to_fascia && !userInputs.has_engineer_specs) {
+            conditions.push("⚠️ FASCIA CONNECTION - Please verify engineer specifications with council");
+            legislationApplied.push({
+                clause: '2.20(1)(j)',
+                text: 'be connected in accordance with a professional engineer\'s specifications',
+                plain: 'Fascia connections must meet engineer\'s specifications',
+                status: '⚠️ CONDITIONAL'
+            });
         }
     }
 
     determineFinalResult(issues, conditions) {
         if (issues.length > 0) {
-            return "❌ LIKELY REJECTED";
+            return {
+                status: "NON EXEMPT",
+                message: "Development Approval Required - Your structure does not qualify as exempt development. You'll need to apply for development approval from council.",
+                issues: issues
+            };
         } else if (conditions.length > 0) {
-            return "⚠️ CONDITIONAL APPROVAL LIKELY";
+            return {
+                status: "CONDITIONAL", 
+                message: "Conditional Approval - Your structure meets most requirements but has specific conditions. Review the detailed checks to see what adjustments may be needed.",
+                conditions: conditions
+            };
         } else {
-            return "✅ LIKELY APPROVED";
+            return {
+                status: "APPROVED",
+                message: "Likely Approved (Exempt Development) - Your structure appears to meet all exempt development criteria. Please ensure your actual structure complies with all the criteria you've confirmed. You may still need to notify council before starting work."
+            };
         }
     }
 }

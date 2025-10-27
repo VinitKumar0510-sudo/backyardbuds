@@ -1,0 +1,84 @@
+Test_ID,Test_Category,Zone,Lot_Size_m2,Heritage,Bushfire,Environmental,Easement,Flood,Structure_Type,Floor_Area_m2,Height_m,Boundary_Distance_m,Dwelling_Distance_m,Wall_Height_m,Floor_Height_m,Materials,Easement_Distance_m,Expected_Result,Actual_Result,Test_Status,Key_Validation
+GS001,Garden Structures Basic,R1,800,NO,NO,NO,NO,NO,Garden Structures & Storage,15,2.5,2,10,,,,,APPROVED,APPROVED,PASS,Basic compliance - all limits met
+GS002,Garden Structures Basic,R1,800,NO,NO,NO,NO,NO,Garden Structures & Storage,25,2.5,2,10,,,,,REJECTED,REJECTED,PASS,Size exceeds 20m² limit for R1 zone
+GS003,Garden Structures Basic,R1,800,NO,NO,NO,NO,NO,Garden Structures & Storage,15,3.5,2,10,,,,,REJECTED,REJECTED,PASS,Height exceeds 3m limit
+GS004,Garden Structures Basic,R1,800,NO,NO,NO,NO,NO,Garden Structures & Storage,15,2.5,0.5,10,,,,,REJECTED,REJECTED,PASS,Boundary setback below 0.9m minimum
+GS005,Garden Structures Rural,RU1,5000,NO,NO,NO,NO,NO,Garden Structures & Storage,45,2.5,6,10,,,,,APPROVED,APPROVED,PASS,Rural zone 50m² limit compliance
+GS006,Garden Structures Rural,RU2,5000,NO,NO,NO,NO,NO,Garden Structures & Storage,55,2.5,6,10,,,,,REJECTED,REJECTED,PASS,Size exceeds 50m² rural limit
+GS007,Garden Structures Rural,RU3,5000,NO,NO,NO,NO,NO,Garden Structures & Storage,45,2.5,3,10,,,,,REJECTED,REJECTED,PASS,Rural setback below 5m minimum
+GS008,Garden Structures Rural,RU4,5000,NO,NO,NO,NO,NO,Garden Structures & Storage,50,3,5,10,,,,,APPROVED,APPROVED,PASS,Rural zone maximum limits compliance
+GS009,Garden Structures Heritage,R1,800,YES,NO,NO,NO,NO,Garden Structures & Storage,15,2.5,2,10,,,,,REJECTED,REJECTED,PASS,Heritage overlay requires DA
+GS010,Garden Structures Heritage,R2,800,YES,NO,NO,NO,NO,Garden Structures & Storage,10,2,3,15,,,,,REJECTED,REJECTED,PASS,Heritage overlay blocks all structures
+GS011,Garden Structures Environmental,R1,800,NO,NO,YES,NO,NO,Garden Structures & Storage,15,2.5,2,10,,,,,REJECTED,REJECTED,PASS,Environmental overlay prohibits garden structures
+GS012,Garden Structures Environmental,E4,2000,NO,NO,YES,NO,NO,Garden Structures & Storage,18,2.8,2,0,,,,,REJECTED,REJECTED,PASS,Environmental overlay in industrial zone
+GS013,Garden Structures Bushfire,R1,800,NO,YES,NO,NO,NO,Garden Structures & Storage,15,2.5,2,3,,,timber,,CONDITIONAL,CONDITIONAL,PASS,Timber materials <5m from dwelling
+GS014,Garden Structures Bushfire,R1,800,NO,YES,NO,NO,NO,Garden Structures & Storage,15,2.5,2,3,,,steel,,APPROVED,APPROVED,PASS,Steel materials compliant in bushfire
+GS015,Garden Structures Bushfire,R1,800,NO,YES,NO,NO,NO,Garden Structures & Storage,15,2.5,2,6,,,,,APPROVED,APPROVED,PASS,Structure >5m from dwelling - no restrictions
+GS016,Garden Structures Easement,R1,800,NO,NO,NO,YES,NO,Garden Structures & Storage,15,2.5,2,10,,,,CONDITIONAL,CONDITIONAL,PASS,Easement distance not provided
+GS017,Garden Structures Easement,R1,800,NO,NO,NO,YES,NO,Garden Structures & Storage,15,2.5,2,10,,,1.5,APPROVED,APPROVED,PASS,Easement distance 1.5m ≥ 1m requirement
+GS018,Garden Structures Easement,R1,800,NO,NO,NO,YES,NO,Garden Structures & Storage,15,2.5,2,10,,,0.8,REJECTED,REJECTED,PASS,Easement distance <1m requirement
+GS019,Garden Structures Flood,R1,800,NO,NO,NO,NO,YES,Garden Structures & Storage,15,2.5,2,10,,,,,APPROVED,APPROVED,PASS,Flood overlay informational only
+GS020,Garden Structures Flood,R3,1200,NO,NO,NO,NO,YES,Garden Structures & Storage,19,2.8,2.5,8,,,,,APPROVED,APPROVED,PASS,Flood does not prevent exemption
+CP001,Carports Basic,R1,250,NO,NO,NO,NO,NO,Carports,18,2.5,2,10,,,,,APPROVED,APPROVED,PASS,Small lot 20m² limit compliance
+CP002,Carports Basic,R1,250,NO,NO,NO,NO,NO,Carports,25,2.5,2,10,,,,,REJECTED,REJECTED,PASS,Exceeds 20m² limit for small lot
+CP003,Carports Basic,R1,400,NO,NO,NO,NO,NO,Carports,22,2.5,2,10,,,,,APPROVED,APPROVED,PASS,Large lot 25m² limit compliance
+CP004,Carports Basic,R1,400,NO,NO,NO,NO,NO,Carports,30,2.5,2,10,,,,,REJECTED,REJECTED,PASS,Exceeds 25m² limit for large lot
+CP005,Carports Rural,RU1,500,NO,NO,NO,NO,NO,Carports,45,2.8,6,10,,,,,APPROVED,APPROVED,PASS,Rural zone 50m² limit compliance
+CP006,Carports Rural,RU2,500,NO,NO,NO,NO,NO,Carports,55,2.8,6,10,,,,,REJECTED,REJECTED,PASS,Exceeds 50m² rural limit
+CP007,Carports Rural,R5,500,NO,NO,NO,NO,NO,Carports,48,2.9,5.5,12,,,,,APPROVED,APPROVED,PASS,R5 treated as rural zone
+CP008,Carports Environmental,R1,400,NO,NO,YES,NO,NO,Carports,20,2.5,2,10,,,,,CONDITIONAL,CONDITIONAL,PASS,Environmental assessment required
+CP009,Carports Multi-Overlay,C3,1000,NO,YES,YES,NO,NO,Carports,24,2.7,6,8,,,steel,,CONDITIONAL,CONDITIONAL,PASS,Environmental assessment with bushfire compliance
+CP010,Carports Heritage,R1,400,YES,NO,NO,NO,NO,Carports,20,2.5,2,10,,,,,REJECTED,REJECTED,PASS,Heritage overlay blocks carports
+OE001,Outdoor Entertainment Basic,R1,800,NO,NO,NO,NO,NO,Outdoor Entertainment Areas,20,2.5,2,10,,,,,APPROVED,APPROVED,PASS,Basic 25m² limit compliance
+OE002,Outdoor Entertainment Basic,R1,800,NO,NO,NO,NO,NO,Outdoor Entertainment Areas,30,2.5,2,10,,,,,REJECTED,REJECTED,PASS,Exceeds 25m² limit
+OE003,Outdoor Entertainment Basic,R1,800,NO,NO,NO,NO,NO,Outdoor Entertainment Areas,20,3.5,2,10,,,,,REJECTED,REJECTED,PASS,Height exceeds 3m limit
+OE004,Outdoor Entertainment Walls,R1,800,NO,NO,NO,NO,NO,Outdoor Entertainment Areas,20,2.5,2,10,1.6,,,,REJECTED,REJECTED,PASS,Wall height exceeds 1.4m limit
+OE005,Outdoor Entertainment Walls,R1,800,NO,NO,NO,NO,NO,Outdoor Entertainment Areas,20,2.5,2,10,1.2,,,,APPROVED,APPROVED,PASS,Wall height within 1.4m limit
+OE006,Outdoor Entertainment Floor,R1,800,NO,NO,NO,NO,NO,Outdoor Entertainment Areas,20,2.5,2,10,,1.3,,,REJECTED,REJECTED,PASS,Floor height exceeds 1m limit
+OE007,Outdoor Entertainment Floor,R1,800,NO,NO,NO,NO,NO,Outdoor Entertainment Areas,20,2.5,2,10,,0.8,,,APPROVED,APPROVED,PASS,Floor height within 1m limit
+OE008,Outdoor Entertainment Bushfire,R1,800,NO,YES,NO,NO,NO,Outdoor Entertainment Areas,20,2.5,2,3,,,timber,,REJECTED,REJECTED,PASS,Timber materials <5m in bushfire area
+OE009,Outdoor Entertainment Bushfire,R1,800,NO,YES,NO,NO,NO,Outdoor Entertainment Areas,20,2.5,2,3,,,steel,,APPROVED,APPROVED,PASS,Steel materials compliant
+OE010,Outdoor Entertainment Bushfire,R1,800,NO,YES,NO,NO,NO,Outdoor Entertainment Areas,20,2.5,2,6,,,,,APPROVED,APPROVED,PASS,Structure >5m from dwelling
+OE011,Outdoor Entertainment Environmental,R1,800,NO,NO,YES,NO,NO,Outdoor Entertainment Areas,20,2.5,2,10,,,,,CONDITIONAL,CONDITIONAL,PASS,Environmental assessment required
+ZN001,Zone Variations,R2,600,NO,NO,NO,NO,NO,Garden Structures & Storage,18,2.5,1.5,10,,,,,APPROVED,APPROVED,PASS,R2 zone compliance
+ZN002,Zone Variations,R3,900,NO,NO,NO,NO,NO,Garden Structures & Storage,19,2.8,2,8,,,,,APPROVED,APPROVED,PASS,R3 zone compliance
+ZN003,Zone Variations,R4,400,NO,NO,NO,NO,NO,Garden Structures & Storage,15,2.2,1.2,12,,,,,APPROVED,APPROVED,PASS,R4 zone compliance
+ZN004,Zone Variations,R5,2000,NO,NO,NO,NO,NO,Garden Structures & Storage,45,2.9,5.5,15,,,,,APPROVED,APPROVED,PASS,R5 treated as rural
+ZN005,Zone Variations,W2,50000,NO,NO,NO,NO,NO,Garden Structures & Storage,48,2.9,20,25,,,,,APPROVED,APPROVED,PASS,W2 treated as rural 50m² limit
+ZN006,Zone Variations,C3,10000,NO,NO,NO,NO,NO,Garden Structures & Storage,40,2.7,8,12,,,,,APPROVED,APPROVED,PASS,C3 treated as rural
+ZN007,Zone Variations,MU1,300,NO,NO,NO,NO,NO,Carports,19,2.6,1.5,8,,,,,APPROVED,APPROVED,PASS,Mixed use zone compliance
+ZN008,Zone Variations,B4,800,NO,NO,NO,NO,NO,Carports,24,2.8,2,0,,,,,APPROVED,APPROVED,PASS,Business zone compliance
+EC001,Edge Cases,R1,800,NO,NO,NO,NO,NO,Garden Structures & Storage,20,3,0.9,10,,,,,APPROVED,APPROVED,PASS,Exactly at all limits
+EC002,Edge Cases,R1,800,NO,NO,NO,NO,NO,Garden Structures & Storage,20.1,3,0.9,10,,,,,REJECTED,REJECTED,PASS,Size just over limit
+EC003,Edge Cases,R1,800,NO,NO,NO,NO,NO,Garden Structures & Storage,20,3.1,0.9,10,,,,,REJECTED,REJECTED,PASS,Height just over limit
+EC004,Edge Cases,R1,800,NO,NO,NO,NO,NO,Garden Structures & Storage,20,3,0.8,10,,,,,REJECTED,REJECTED,PASS,Setback just under limit
+EC005,Edge Cases Rural,RU1,5000,NO,NO,NO,NO,NO,Garden Structures & Storage,50,3,5,10,,,,,APPROVED,APPROVED,PASS,Rural maximum limits
+EC006,Edge Cases Rural,RU1,5000,NO,NO,NO,NO,NO,Garden Structures & Storage,50.1,3,5,10,,,,,REJECTED,REJECTED,PASS,Rural size just over limit
+EC007,Edge Cases Rural,RU1,5000,NO,NO,NO,NO,NO,Garden Structures & Storage,50,3,4.9,10,,,,,REJECTED,REJECTED,PASS,Rural setback just under limit
+EC008,Edge Cases Carport,R1,299,NO,NO,NO,NO,NO,Carports,20,2.5,2,10,,,,,APPROVED,APPROVED,PASS,Small lot threshold
+EC009,Edge Cases Carport,R1,301,NO,NO,NO,NO,NO,Carports,25,2.5,2,10,,,,,APPROVED,APPROVED,PASS,Large lot threshold
+EC010,Edge Cases Carport,RU1,301,NO,NO,NO,NO,NO,Carports,50,2.5,6,10,,,,,APPROVED,APPROVED,PASS,Rural carport maximum
+EC011,Edge Cases OE,R1,800,NO,NO,NO,NO,NO,Outdoor Entertainment Areas,25,2.5,2,10,,,,,APPROVED,APPROVED,PASS,OE maximum size
+EC012,Edge Cases OE,R1,800,NO,NO,NO,NO,NO,Outdoor Entertainment Areas,25.1,2.5,2,10,,,,,REJECTED,REJECTED,PASS,OE size just over limit
+EC013,Edge Cases OE Wall,R1,800,NO,NO,NO,NO,NO,Outdoor Entertainment Areas,20,2.5,2,10,1.4,,,,APPROVED,APPROVED,PASS,Wall height at limit
+EC014,Edge Cases OE Wall,R1,800,NO,NO,NO,NO,NO,Outdoor Entertainment Areas,20,2.5,2,10,1.41,,,,REJECTED,REJECTED,PASS,Wall height just over limit
+EC015,Edge Cases OE Floor,R1,800,NO,NO,NO,NO,NO,Outdoor Entertainment Areas,20,2.5,2,10,,1,,,APPROVED,APPROVED,PASS,Floor height at limit
+EC016,Edge Cases OE Floor,R1,800,NO,NO,NO,NO,NO,Outdoor Entertainment Areas,20,2.5,2,10,,1.01,,,REJECTED,REJECTED,PASS,Floor height just over limit
+BF001,Bushfire Edge Cases,R1,800,NO,YES,NO,NO,NO,Garden Structures & Storage,15,2.5,2,5,,,timber,,APPROVED,APPROVED,PASS,Exactly 5m from dwelling
+BF002,Bushfire Edge Cases,R1,800,NO,YES,NO,NO,NO,Garden Structures & Storage,15,2.5,2,4.9,,,timber,,CONDITIONAL,CONDITIONAL,PASS,Just under 5m - materials required
+BF003,Bushfire Edge Cases,R1,800,NO,YES,NO,NO,NO,Outdoor Entertainment Areas,20,2.5,2,5,,,timber,,APPROVED,APPROVED,PASS,OE exactly 5m from dwelling
+BF004,Bushfire Edge Cases,R1,800,NO,YES,NO,NO,NO,Outdoor Entertainment Areas,20,2.5,2,4.9,,,timber,,REJECTED,REJECTED,PASS,OE timber <5m violation
+ES001,Easement Edge Cases,R1,800,NO,NO,NO,YES,NO,Garden Structures & Storage,15,2.5,2,10,,,1,APPROVED,APPROVED,PASS,Exactly 1m from easement
+ES002,Easement Edge Cases,R1,800,NO,NO,NO,YES,NO,Garden Structures & Storage,15,2.5,2,10,,,0.99,REJECTED,REJECTED,PASS,Just under 1m from easement
+ES003,Easement Edge Cases,R1,800,NO,NO,NO,YES,NO,Carports,20,2.5,2,10,,,0.5,APPROVED,APPROVED,PASS,Carports not subject to easement rules
+MO001,Multiple Overlays,R1,800,YES,YES,NO,NO,NO,Garden Structures & Storage,15,2.5,2,10,,,,,REJECTED,REJECTED,PASS,Heritage + Bushfire overlays
+MO002,Multiple Overlays,R1,800,NO,YES,YES,NO,NO,Garden Structures & Storage,15,2.5,2,10,,,,,REJECTED,REJECTED,PASS,Bushfire + Environmental overlays
+MO003,Multiple Overlays,R1,800,YES,NO,YES,NO,NO,Garden Structures & Storage,15,2.5,2,10,,,,,REJECTED,REJECTED,PASS,Heritage + Environmental overlays
+MO004,Multiple Overlays,R1,800,NO,YES,YES,YES,YES,Carports,20,2.5,2,10,,,,,CONDITIONAL,CONDITIONAL,PASS,Multiple overlays - carport conditional
+ST001,Stress Tests,R1,1,NO,NO,NO,NO,NO,Garden Structures & Storage,1,0.1,0.9,1,,,,,APPROVED,APPROVED,PASS,Minimum viable structure
+ST002,Stress Tests,RU1,1000000,NO,NO,NO,NO,NO,Garden Structures & Storage,50,3,100,200,,,,,APPROVED,APPROVED,PASS,Maximum viable structure
+ST003,Stress Tests,R1,800,NO,NO,NO,NO,NO,Garden Structures & Storage,1000,10,0.1,0.1,,,,,REJECTED,REJECTED,PASS,Extreme violations
+IN001,Industrial Zones,E4,5000,NO,NO,NO,NO,NO,Garden Structures & Storage,18,2.8,2,0,,,,,APPROVED,APPROVED,PASS,Industrial zone compliance
+IN002,Industrial Zones,E2,1000,NO,NO,NO,NO,NO,Carports,24,2.8,1.5,0,,,,,APPROVED,APPROVED,PASS,Employment zone compliance
+CM001,Commercial Zones,B4,800,NO,NO,NO,NO,NO,Garden Structures & Storage,19,2.9,1.5,0,,,,,APPROVED,APPROVED,PASS,Business zone compliance
+CM002,Commercial Zones,B1,600,NO,NO,NO,NO,NO,Carports,22,2.7,1.2,0,,,,,APPROVED,APPROVED,PASS,Business core zone compliance

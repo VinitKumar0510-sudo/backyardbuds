@@ -480,6 +480,117 @@ const AssessmentPage = () => {
           </div>
         </div>
 
+        {/* Assessment Summary Bar */}
+        {(formData.property.address || formData.property.type) && (
+          <div className="mt-8 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg p-6 border border-blue-200">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Current Assessment</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* Property Information */}
+              <div className="bg-white rounded-lg p-4 shadow-sm">
+                <h4 className="font-medium text-gray-800 mb-2 flex items-center">
+                  <svg className="w-4 h-4 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
+                  Property Information
+                </h4>
+                {formData.property.address && (
+                  <p className="text-sm text-gray-600 mb-1">
+                    <span className="font-medium">Address:</span> {formData.property.address}
+                  </p>
+                )}
+                {formData.property.type && (
+                  <p className="text-sm text-gray-600 mb-1">
+                    <span className="font-medium">Type:</span> {formatPropertyType(formData.property.type)}
+                  </p>
+                )}
+                {formData.property.lotSize && (
+                  <p className="text-sm text-gray-600 mb-1">
+                    <span className="font-medium">Lot Size:</span> {parseFloat(formData.property.lotSize).toLocaleString()} m²
+                  </p>
+                )}
+                {formData.property.zoning && (
+                  <p className="text-sm text-gray-600">
+                    <span className="font-medium">Zone:</span> {formData.property.zoning}
+                  </p>
+                )}
+              </div>
+
+              {/* Property Status */}
+              <div className="bg-white rounded-lg p-4 shadow-sm">
+                <h4 className="font-medium text-gray-800 mb-2 flex items-center">
+                  <svg className="w-4 h-4 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Property Status
+                </h4>
+                {formData.property.selectedProperty ? (
+                  <div className="space-y-1">
+                    <p className="text-sm text-gray-600">
+                      <span className="font-medium">Heritage:</span> 
+                      <span className={formData.property.selectedProperty.heritageOverlay ? 'text-red-600' : 'text-green-600'}>
+                        {formData.property.selectedProperty.heritageOverlay ? ' YES' : ' NO'}
+                      </span>
+                    </p>
+                    <p className="text-sm text-gray-600">
+                      <span className="font-medium">Bushfire:</span> 
+                      <span className={formData.property.selectedProperty.bushfireProne ? 'text-orange-600' : 'text-green-600'}>
+                        {formData.property.selectedProperty.bushfireProne ? ' YES' : ' NO'}
+                      </span>
+                    </p>
+                    <p className="text-sm text-gray-600">
+                      <span className="font-medium">Flood:</span> 
+                      <span className={formData.property.selectedProperty.floodOverlay ? 'text-blue-600' : 'text-green-600'}>
+                        {formData.property.selectedProperty.floodOverlay ? ' YES' : ' NO'}
+                      </span>
+                    </p>
+                    {formData.property.selectedProperty.hasRestrictions && (
+                      <p className="text-xs text-orange-600 mt-2">
+                        ⚠️ {formData.property.selectedProperty.restrictionSummary}
+                      </p>
+                    )}
+                  </div>
+                ) : (
+                  <p className="text-sm text-gray-500">Select a property to view overlay information</p>
+                )}
+              </div>
+
+              {/* Structure Type */}
+              <div className="bg-white rounded-lg p-4 shadow-sm">
+                <h4 className="font-medium text-gray-800 mb-2 flex items-center">
+                  <svg className="w-4 h-4 mr-2 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
+                  Proposed Structure
+                </h4>
+                {formData.proposal.structureType ? (
+                  <div className="space-y-1">
+                    <p className="text-sm text-gray-600">
+                      <span className="font-medium">Type:</span> {formatStructureType(formData.proposal.structureType)}
+                    </p>
+                    {formData.proposal.height && (
+                      <p className="text-sm text-gray-600">
+                        <span className="font-medium">Height:</span> {formData.proposal.height}m
+                      </p>
+                    )}
+                    {formData.proposal.floorArea && (
+                      <p className="text-sm text-gray-600">
+                        <span className="font-medium">Area:</span> {formData.proposal.floorArea}m²
+                      </p>
+                    )}
+                    {formData.proposal.distanceFromBoundary && (
+                      <p className="text-sm text-gray-600">
+                        <span className="font-medium">Setback:</span> {formData.proposal.distanceFromBoundary}m
+                      </p>
+                    )}
+                  </div>
+                ) : (
+                  <p className="text-sm text-gray-500">Select structure type and enter dimensions</p>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Results Section */}
         {assessmentResult && (
           <div ref={resultsRef} className="mt-12 bg-white rounded-lg shadow-sm border border-gray-200 p-8 animate-slide-up print-section">
