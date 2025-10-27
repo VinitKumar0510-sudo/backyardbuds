@@ -62,7 +62,7 @@ const generatePDF = (assessment) => {
           assessment.result.includes('CONDITIONAL') ? 'result-conditional' :
           'result-rejected'
         }">
-            ${assessment.result}
+            ${assessment.result.includes('APPROVED') ? 'Likely Approved' : assessment.result.includes('REJECTED') ? 'Likely Non Exempt' : assessment.result}
         </p>
         <p>${assessment.message || 'Assessment completed'}</p>
     </div>
@@ -301,8 +301,8 @@ const AssessmentResults = ({ assessment, onNewAssessment }) => {
       <div className="text-center mb-6">
         <div className="text-4xl mb-2">{getResultIcon(assessment.result)}</div>
         <h2 className={`text-2xl font-bold mb-2 ${getResultColor(assessment.result)}`}>
-          {assessment.result.includes('APPROVED') ? 'APPROVED' : 
-           assessment.result.includes('REJECTED') ? 'Non Exempt' : 
+          {assessment.result.includes('APPROVED') ? 'Likely Approved' : 
+           assessment.result.includes('REJECTED') ? 'Likely Non Exempt' : 
            assessment.result.includes('CONDITIONAL') ? '⚠️ Likely Exempt' : 
            assessment.result}
         </h2>
