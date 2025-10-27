@@ -38,7 +38,7 @@ const EnhancedAssessmentPage = () => {
     try {
       // Map property data to expected backend format
       const propertyData = {
-        short_address: selectedProperty.fullAddress || selectedProperty.short_address || 'Unknown',
+        short_address: selectedProperty.fullAddress || selectedProperty.short_address || selectedProperty.address || 'Unknown',
         zone_type: selectedProperty.zoning || selectedProperty.zone_type || 'R1',
         zone_description: selectedProperty.zoneDescription || selectedProperty.zone_description || '',
         area_total: selectedProperty.lotSizeM2 || selectedProperty.lotSize || selectedProperty.area_total || 800,

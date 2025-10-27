@@ -84,7 +84,8 @@ router.post('/', async (req, res) => {
         warnings: assessment.warnings,
         infoNotes: assessment.infoNotes,
         legislationApplied: assessment.legislationApplied,
-        summary: assessment.summary
+        summary: assessment.summary,
+        input: { property, userInputs }
       },
       metadata: {
         timestamp: new Date().toISOString(),

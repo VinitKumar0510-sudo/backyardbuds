@@ -1,0 +1,268 @@
+[
+  {
+    "testId": "GS001",
+    "category": "Garden Structures Basic",
+    "expected": "APPROVED",
+    "actual": "APPROVED",
+    "pass": true,
+    "issues": [],
+    "conditions": []
+  },
+  {
+    "testId": "GS002",
+    "category": "Garden Structures Basic",
+    "expected": "REJECTED",
+    "actual": "REJECTED",
+    "pass": true,
+    "issues": [
+      "❌ SIZE EXCEEDS LIMIT (25m² > 20m²)"
+    ],
+    "conditions": []
+  },
+  {
+    "testId": "GS003",
+    "category": "Garden Structures Basic",
+    "expected": "REJECTED",
+    "actual": "REJECTED",
+    "pass": true,
+    "issues": [
+      "❌ HEIGHT EXCEEDS LIMIT (3.5m > 3m)"
+    ],
+    "conditions": []
+  },
+  {
+    "testId": "GS004",
+    "category": "Garden Structures Basic",
+    "expected": "REJECTED",
+    "actual": "REJECTED",
+    "pass": true,
+    "issues": [
+      "❌ BOUNDARY SETBACK TOO SMALL (0.5m < 0.9m)"
+    ],
+    "conditions": []
+  },
+  {
+    "testId": "GS005",
+    "category": "Garden Structures Rural",
+    "expected": "APPROVED",
+    "actual": "APPROVED",
+    "pass": true,
+    "issues": [],
+    "conditions": []
+  },
+  {
+    "testId": "GS006",
+    "category": "Garden Structures Rural",
+    "expected": "REJECTED",
+    "actual": "REJECTED",
+    "pass": true,
+    "issues": [
+      "❌ SIZE EXCEEDS LIMIT (55m² > 50m²)"
+    ],
+    "conditions": []
+  },
+  {
+    "testId": "GS007",
+    "category": "Garden Structures Rural",
+    "expected": "REJECTED",
+    "actual": "REJECTED",
+    "pass": true,
+    "issues": [
+      "❌ BOUNDARY SETBACK TOO SMALL (3m < 5m)"
+    ],
+    "conditions": []
+  },
+  {
+    "testId": "GS008",
+    "category": "Garden Structures Rural",
+    "expected": "APPROVED",
+    "actual": "APPROVED",
+    "pass": true,
+    "issues": [],
+    "conditions": []
+  },
+  {
+    "testId": "GS009",
+    "category": "Garden Structures Heritage",
+    "expected": "REJECTED",
+    "actual": "REJECTED",
+    "pass": true,
+    "issues": [
+      "❌ HERITAGE OVERLAY - Heritage overlay prohibits structures unless Heritage Act s.57 exemption obtained"
+    ],
+    "conditions": []
+  },
+  {
+    "testId": "GS010",
+    "category": "Garden Structures Heritage",
+    "expected": "REJECTED",
+    "actual": "REJECTED",
+    "pass": true,
+    "issues": [
+      "❌ HERITAGE OVERLAY - Heritage overlay prohibits structures unless Heritage Act s.57 exemption obtained"
+    ],
+    "conditions": []
+  },
+  {
+    "testId": "GS011",
+    "category": "Garden Structures Environmental",
+    "expected": "REJECTED",
+    "actual": "REJECTED",
+    "pass": true,
+    "issues": [
+      "❌ ENVIRONMENTAL OVERLAY - Environmental overlay prohibits garden structures"
+    ],
+    "conditions": []
+  },
+  {
+    "testId": "GS012",
+    "category": "Garden Structures Environmental",
+    "expected": "REJECTED",
+    "actual": "REJECTED",
+    "pass": true,
+    "issues": [
+      "❌ ENVIRONMENTAL OVERLAY - Environmental overlay prohibits garden structures"
+    ],
+    "conditions": []
+  },
+  {
+    "testId": "GS013",
+    "category": "Garden Structures Bushfire",
+    "expected": "",
+    "actual": "APPROVED",
+    "pass": false,
+    "issues": [],
+    "conditions": []
+  },
+  {
+    "testId": "GS014",
+    "category": "Garden Structures Bushfire",
+    "expected": "",
+    "actual": "APPROVED",
+    "pass": false,
+    "issues": [],
+    "conditions": []
+  },
+  {
+    "testId": "GS015",
+    "category": "Garden Structures Bushfire",
+    "expected": "APPROVED",
+    "actual": "APPROVED",
+    "pass": true,
+    "issues": [],
+    "conditions": []
+  },
+  {
+    "testId": "CP001",
+    "category": "Carports Basic",
+    "expected": "APPROVED",
+    "actual": "APPROVED",
+    "pass": true,
+    "issues": [],
+    "conditions": []
+  },
+  {
+    "testId": "CP002",
+    "category": "Carports Basic",
+    "expected": "REJECTED",
+    "actual": "REJECTED",
+    "pass": true,
+    "issues": [
+      "❌ SIZE EXCEEDS LIMIT (25m² > 20m²)"
+    ],
+    "conditions": []
+  },
+  {
+    "testId": "CP003",
+    "category": "Carports Basic",
+    "expected": "APPROVED",
+    "actual": "APPROVED",
+    "pass": true,
+    "issues": [],
+    "conditions": []
+  },
+  {
+    "testId": "CP004",
+    "category": "Carports Basic",
+    "expected": "REJECTED",
+    "actual": "REJECTED",
+    "pass": true,
+    "issues": [
+      "❌ SIZE EXCEEDS LIMIT (30m² > 25m²)"
+    ],
+    "conditions": []
+  },
+  {
+    "testId": "OE001",
+    "category": "Outdoor Entertainment Basic",
+    "expected": "APPROVED",
+    "actual": "APPROVED",
+    "pass": true,
+    "issues": [],
+    "conditions": []
+  },
+  {
+    "testId": "OE002",
+    "category": "Outdoor Entertainment Basic",
+    "expected": "REJECTED",
+    "actual": "REJECTED",
+    "pass": true,
+    "issues": [
+      "❌ SIZE EXCEEDS LIMIT (30m² > 25m²)"
+    ],
+    "conditions": []
+  },
+  {
+    "testId": "OE003",
+    "category": "Outdoor Entertainment Basic",
+    "expected": "REJECTED",
+    "actual": "REJECTED",
+    "pass": true,
+    "issues": [
+      "❌ HEIGHT EXCEEDS LIMIT (3.5m > 3m)"
+    ],
+    "conditions": []
+  },
+  {
+    "testId": "EC001",
+    "category": "Edge Cases",
+    "expected": "APPROVED",
+    "actual": "APPROVED",
+    "pass": true,
+    "issues": [],
+    "conditions": []
+  },
+  {
+    "testId": "EC002",
+    "category": "Edge Cases",
+    "expected": "REJECTED",
+    "actual": "REJECTED",
+    "pass": true,
+    "issues": [
+      "❌ SIZE EXCEEDS LIMIT (20.1m² > 20m²)"
+    ],
+    "conditions": []
+  },
+  {
+    "testId": "EC003",
+    "category": "Edge Cases",
+    "expected": "REJECTED",
+    "actual": "REJECTED",
+    "pass": true,
+    "issues": [
+      "❌ HEIGHT EXCEEDS LIMIT (3.1m > 3m)"
+    ],
+    "conditions": []
+  },
+  {
+    "testId": "EC004",
+    "category": "Edge Cases",
+    "expected": "REJECTED",
+    "actual": "REJECTED",
+    "pass": true,
+    "issues": [
+      "❌ BOUNDARY SETBACK TOO SMALL (0.8m < 0.9m)"
+    ],
+    "conditions": []
+  }
+]
